@@ -16,7 +16,7 @@ return array
 	),
 	'extensions' => array
 	(
-		// List extension class names
+		'Kotwig_Extension_I18n', 'Kotwig_Extension_URL', 'Kotwig_Extension_Form'
 	),
 	'templates'      => APPPATH.'views',
 	'suffix'         => 'twig',

@@ -29,15 +29,16 @@ class Kohana_Kotwig {
 			Kotwig::$instance = new Kotwig;
 			
 			// Load Twig configuration
-			Kotwig::$instance->config = Kohana::config('kotwig');
+			$config = new Config_File;
+			Kotwig::$instance->config = $config->load('kotwig');
 
 			// Create the the loader
-			$loader = new Twig_Loader_Filesystem(Kotwig::$instance->config->templates);
+			$loader = new Twig_Loader_Filesystem(Kotwig::$instance->config['templates']);
 
 			// Set up Twig
-			Kotwig::$instance->twig = new Twig_Environment($loader, Kotwig::$instance->config->environment);
+			Kotwig::$instance->twig = new Twig_Environment($loader, Kotwig::$instance->config['environment']);
 
-			foreach (Kotwig::$instance->config->extensions as $extension)
+			foreach (Kotwig::$instance->config['extensions'] as $extension)
 			{
 				// Load extensions
 				Kotwig::$instance->twig->addExtension(new $extension);
